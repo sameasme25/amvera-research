@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amvera Research</title>
+<meta name="description" content="Amvera Research — an independent research and consulting practice that turns industry problems into decisions worth making." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101110;
+    --ink-soft:#3a3c3a;
+    --muted:#6b6d68;
+    --paper:#ffffff;
+    --line:#e7e4dd;
+    --accent:#1f4d3a;
+    --accent-soft:#eaf1ed;
+    --watermark:#f1efe9;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Archivo',sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  p{margin:0;color:var(--ink-soft);}
+  a{color:var(--ink);text-decoration:none;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:6px;height:6px;
+    background:var(--accent);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .dash{
+    width:48px;height:3px;
+    background:var(--ink);
+    margin:22px 0;
+    border:none;
+  }
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:12px 26px;
+    border-radius:999px;
+    border:1.5px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    cursor:pointer;
+    display:inline-block;
+    transition:background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px);}
+  .btn.filled{background:var(--ink);color:var(--paper);}
+  .btn.filled:hover{background:var(--accent);border-color:var(--accent);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:var(--max);margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{display:flex;align-items:baseline;gap:10px;}
+  .logo .word{font-family:'Archivo',sans-serif;font-weight:800;font-size:21px;letter-spacing:-0.01em;}
+  .logo .div{width:1px;height:16px;background:var(--line);}
+  .logo .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--muted);}
+  .nav-links{display:flex;align-items:center;gap:34px;}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links .btn{padding:10px 22px;font-size:14px;}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 96px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;}
+  .hero-visual{position:relative;height:460px;}
+  .memo{
+    position:absolute;
+    width:240px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:16px 18px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+  .memo .label{display:block;font-weight:600;letter-spacing:0.06em;color:var(--muted);margin-bottom:8px;font-size:11px;}
+  .memo.faded{filter:blur(0.4px);opacity:0.38;}
+  .memo.m1{top:0;left:6%;transform:rotate(-4deg);}
+  .memo.m2{top:158px;left:0;transform:rotate(3deg);}
+  .memo.m3{top:26px;left:54%;width:200px;transform:rotate(5deg);}
+  .memo.sharp{
+    top:200px;left:18%;
+    width:300px;
+    z-index:5;
+    opacity:1;filter:none;
+    border:1.5px solid var(--ink);
+    box-shadow:0 18px 40px -18px rgba(16,17,16,0.25);
+    background:var(--paper);
+    padding:22px 24px;
+  }
+  .memo.sharp .row{padding:9px 0;border-top:1px solid var(--line);}
+  .memo.sharp .row:first-of-type{border-top:none;padding-top:0;}
+  .memo.sharp .row .k{font-weight:600;color:var(--accent);letter-spacing:0.08em;font-size:10.5px;}
+  .memo.sharp .row .v{color:var(--ink);font-size:13px;margin-top:3px;line-height:1.45;}
+
+  .hero-copy h1{font-size:50px;line-height:1.06;}
+  .hero-copy .lede{margin-top:22px;font-size:17.5px;max-width:480px;}
+  .hero-copy .below{margin-top:0;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:84px 0;}
+  .section-head{max-width:640px;margin-bottom:46px;}
+  .section-head h2{font-size:34px;margin-top:14px;}
+  .section-head p{margin-top:14px;font-size:16.5px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .about-copy p + p{margin-top:16px;}
+  .panel{
+    background:var(--ink);
+    border-radius:4px;
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .panel::before{
+    content:'';position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size:28px 28px;
+  }
+  .panel .mark{position:relative;text-align:center;color:#fff;}
+  .panel .mark .a1{font-family:'Archivo',sans-serif;font-weight:900;font-size:54px;letter-spacing:-0.01em;}
+  .panel .mark .a2{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#cfd6d1;margin-top:8px;}
+
+  /* ---------- METHOD ---------- */
+  .method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .method-card{border-top:2px solid var(--ink);padding-top:20px;}
+  .method-card .num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);font-weight:600;}
+  .method-card h3{font-size:21px;margin-top:10px;}
+  .method-card p{margin-top:12px;font-size:15.5px;}
+
+  /* ---------- INDUSTRIES ---------- */
+  .industries{background:#fafaf8;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .ind-cell{
+    background:#fafaf8;
+    padding:26px 22px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+    transition:background .15s ease, color .15s ease;
+  }
+  .ind-cell:hover{background:var(--accent-soft);color:var(--accent);}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:var(--ink);color:#fff;
+    text-align:center;
+    padding:90px 0;
+  }
+  .cta h2{color:#fff;font-size:38px;max-width:680px;margin:0 auto;}
+  .cta p{color:#c9cbc6;margin-top:16px;font-size:16.5px;}
+  .cta .btn{margin-top:30px;border-color:#fff;color:#fff;}
+  .cta .btn:hover{background:#fff;color:var(--ink);}
+
+  /* ---------- FOOTER ---------- */
+  footer{position:relative;padding-top:64px;overflow:hidden;}
+  .foot-top{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    flex-wrap:wrap;gap:36px;
+    padding-bottom:48px;
+  }
+  .foot-links{display:flex;gap:32px;flex-wrap:wrap;}
+  .foot-links a{font-size:14.5px;color:var(--ink-soft);}
+  .foot-links a:hover{color:var(--ink);}
+  .foot-contact{font-size:14.5px;color:var(--ink-soft);}
+  .foot-contact a{color:var(--ink);font-weight:600;}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    border-top:1px solid var(--line);
+    padding:20px 0;
+    font-size:13px;color:var(--muted);
+  }
+  .foot-legal{display:flex;gap:22px;}
+  .watermark{
+    font-family:'Archivo',sans-serif;
+    font-weight:900;
+    font-size:clamp(70px,16vw,190px);
+    color:var(--watermark);
+    line-height:0.8;
+    white-space:nowrap;
+    margin-top:10px;
+    user-select:none;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:56px;}
+    .hero-visual{height:380px;order:2;}
+    .hero-copy{order:1;}
+    .hero-copy h1{font-size:40px;}
+    .about-grid{grid-template-columns:1fr;}
+    .panel{max-width:380px;margin:0 auto;}
+    .method-grid{grid-template-columns:1fr;gap:30px;}
+    .ind-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-links{gap:20px;}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+    nav{padding:16px 22px;}
+    .nav-links a:not(.btn){display:none;}
+    .hero{padding:48px 0 64px;}
+    .hero-copy h1{font-size:32px;}
+    .memo{width:200px;font-size:11.5px;padding:13px 14px;}
+    .memo.sharp{width:240px;left:8%;}
+    .memo.m3{display:none;}
+    section{padding:60px 0;}
+    .section-head h2{font-size:27px;}
+    .cta h2{font-size:28px;}
+    .foot-top{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">
+      <span class="word">Amvera</span>
+      <span class="div"></span>
+      <span class="tag">RESEARCH</span>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About Us</a>
+      <a href="#method">Our Method</a>
+      <a href="#industries">Industries</a>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-visual">
+      <div class="memo faded m1">
+        <span class="label">FIELD NOTE — ENERGY</span>
+        Q3 grid load variance exceeds forecast by 14%. Not a demand problem — a scheduling one.
+      </div>
+      <div class="memo faded m2">
+        <span class="label">FIELD NOTE — HEALTH SYSTEMS</span>
+        Discharge delay traced to handoff timing, not staffing levels.
+      </div>
+      <div class="memo faded m3">
+        <span class="label">FIELD NOTE — RETAIL</span>
+        SKU rationalization: ~9% carrying cost reduction.
+      </div>
+      <div class="memo sharp">
+        <div class="row">
+          <div class="k">FINDING</div>
+          <div class="v">The bottleneck usually isn't capacity. It's the handoff between teams.</div>
+        </div>
+        <div class="row">
+          <div class="k">IMPLICATION</div>
+          <div class="v">Fixing the org chart won't help. Fixing the interface will.</div>
+        </div>
+        <div class="row">
+          <div class="k">ACTION</div>
+          <div class="v">Redesign the handoff. Measure it. Repeat.</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <h1>We turn industry problems into decisions worth making.</h1>
+      <p class="lede">Amvera Research partners with operators who need more than a deck — a defensible answer to a hard question, and a plan that survives contact with the real organization.</p>
+      <hr class="dash" />
+      <p class="below">No frameworks first. We start with the work itself — the data, the process, the people closest to the problem.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid reveal">
+    <div class="about-copy">
+      <span class="eyebrow">About Us</span>
+      <h2 style="margin-top:14px;font-size:34px;">An independent research and consulting practice.</h2>
+      <p style="margin-top:18px;font-size:16.5px;">Amvera Research exists to solve the problems that sit underneath the symptom — the ones that show up as missed targets, slow handoffs, or margin that quietly disappears.</p>
+      <p>We work across industries because the pattern repeats more than people expect: the real constraint is rarely where the org chart says it should be. Our job is to find it, prove it with evidence, and build a fix the team can actually run.</p>
+      <p>We stay close to the work — fewer slides, more time inside the actual process — and we stay through implementation, not just the recommendation.</p>
+    </div>
+    <div class="panel">
+      <div class="mark">
+        <div class="a1">AMVERA</div>
+        <div class="a2">RESEARCH &amp; CONSULTING</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <span class="eyebrow">Our Method</span>
+      <h2>The same three moves, every engagement.</h2>
+      <p>Industries differ. The sequence that gets to a real answer doesn't.</p>
+    </div>
+    <div class="method-grid">
+      <div class="method-card">
+        <span class="num">01 — DIAGNOSE</span>
+        <h3>Go to where the work happens.</h3>
+        <p>Interviews, data, and time spent inside the actual process — not just the deck someone made about it. Most diagnoses are wrong because nobody looked closely enough.</p>
+      </div>
+      <div class="method-card">
+        <span class="num">02 — DESIGN</span>
+        <h3>Build the fix with the people who'll run it.</h3>
+        <p>A solution that ignores the org chart doesn't survive contact with it. We design with the team, not for them.</p>
+      </div>
+      <div class="method-card">
+        <span class="num">03 — DELIVER</span>
+        <h3>Stay through implementation.</h3>
+        <p>A finding nobody acts on isn't a finding — it's a slide. We stay close until the fix is running on its own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="industries" class="industries">
+  <div class="wrap reveal">
+    <div class="section-head" style="margin-bottom:36px;">
+      <span class="eyebrow">Industries</span>
+      <h2>Where the work has taken us.</h2>
+      <p style="color:var(--muted);font-size:14px;">Representative sectors — tell us yours.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding-bottom:8px;">
+    <div class="ind-grid">
+      <div class="ind-cell">Energy &amp; Utilities</div>
+      <div class="ind-cell">Healthcare &amp; Life Sciences</div>
+      <div class="ind-cell">Manufacturing</div>
+      <div class="ind-cell">Financial Services</div>
+      <div class="ind-cell">Retail &amp; Consumer</div>
+      <div class="ind-cell">Public Sector</div>
+      <div class="ind-cell">Logistics &amp; Supply Chain</div>
+      <div class="ind-cell">Technology</div>
+    </div>
+  </div>
+  <div style="height:84px;"></div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap reveal">
+    <h2>Have a problem worth solving properly?</h2>
+    <p>Tell us what's not working. We'll tell you what we'd look at first.</p>
+    <a href="mailto:hello@amvera.com" class="btn">Get in Touch</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="logo">
+        <span class="word">Amvera</span>
+        <span class="div"></span>
+        <span class="tag">RESEARCH</span>
+      </div>
+      <div class="foot-links">
+        <a href="#about">About Us</a>
+        <a href="#method">Our Method</a>
+        <a href="#industries">Industries</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-contact">
+        For inquiries: <a href="mailto:amveraresearch@gmail.com">amveraresearch@gmail.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Amvera Research</span>
+      <div class="foot-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="watermark">AMVERA RESEARCH</div>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  els.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
